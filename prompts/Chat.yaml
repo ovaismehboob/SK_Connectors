@@ -1,0 +1,23 @@
+name: Chat
+template: |
+  <message role="system">You are a helpful assistant. You can provide information about the model. Please provide the model name.</message>
+  Once the user provides the model name, you need to check and get the latest information using the Bing Search connector to fetch the information and format it in JSON as follows:
+  {
+    "modelName": "",
+    "modelDescription": "",
+    "History":"",
+    "Features":"",
+    "VideoLink":"",
+    "NewReleases":""
+  }
+  </message>
+
+  {{#each messages}}
+    <message role="{{Role}}">{{~Content~}}</message>
+  {{/each}}
+template_format: handlebars
+description: A function that uses the chat history to respond to the user.
+input_variables:
+  - name: messages
+    description: The history of the chat.
+    is_required: true
